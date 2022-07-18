@@ -17,6 +17,7 @@ func main() {
 }
 
 func startGame() {
+	fmt.Println("\033[2J")
 	fmt.Println("X's go First")
 	for !winner {
 		xTurn()
@@ -29,6 +30,7 @@ func startGame() {
 }
 
 func xTurn() {
+
 	choice := getUserChoice()
 	chooseSpace(choice, "X")
 	printBoard(board)
@@ -38,8 +40,10 @@ func xTurn() {
 }
 
 func oTurn() {
+
 	choice := getUserChoice()
 	chooseSpace(choice, "O")
+	printBoard(board)
 	if checkWin() {
 		fmt.Println("Congrats you have won!")
 	}
