@@ -10,10 +10,10 @@
 </head>
 <body>
     <h2>XTREAM Tic-Tac-TOe</h2>
-    <h3 id="hidden">Who goes first?</h3>
+    <h3 id="msg">Who goes first?</h3>
     <div id="btn-group">
-        <button id="x-button">X</button>
-        <button id="o-button">O</button>
+        <button id="x-button" class="game-settings" onclick="goesFirst(this)">X</button>
+        <button id="o-button" class="game-settings" onclick="goesFirst(this)">O</button>
     </div>
     <div id="game-board">
         <div class="row" id="row0">
