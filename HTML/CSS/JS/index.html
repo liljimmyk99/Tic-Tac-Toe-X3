@@ -17,19 +17,19 @@
     </div>
     <div id="game-board">
         <div class="row" id="row0">
-            <button id="btn-0">X</button>
-            <button id="btn-1">X</button>
-            <button id="btn-3">X</button>
+            <button data-row=0 data-column=0 id="btn-0" onclick="selected(this)"></button>
+            <button data-row=0 data-column=1 id="btn-1" onclick="selected(this)"></button>
+            <button data-row=0 data-column=2 id="btn-3" onclick="selected(this)"></button>
         </div>
         <div class="row" id="row1">
-            <button id="btn-4">X</button>
-            <button id="btn-5">X</button>
-            <button id="btn-6">X</button>
+            <button id="btn-4" data-row=1 data-column=0 onclick="selected(this)"></button>
+            <button id="btn-5" data-row=1 data-column=1 onclick="selected(this)"></button>
+            <button id="btn-6" data-row=1 data-column=2 onclick="selected(this)"></button>
         </div>
         <div class="row" id="row2">
-            <button id="btn-7">X</button>
-            <button id="btn-8">X</button>
-            <button id="btn-9">X</button>
+            <button id="btn-7" data-row=2 data-column=0 onclick="selected(this)"></button>
+            <button id="btn-8" data-row=2 data-column=1 onclick="selected(this)"></button>
+            <button id="btn-9" data-row=2 data-column=2 onclick="selected(this)"></button>
         </div>
     </div>
     <div id="message-button"></div>
