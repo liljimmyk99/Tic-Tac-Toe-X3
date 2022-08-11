@@ -76,6 +76,7 @@ function changeTurn(){
 function checkWinner(){
     if (checkAcross() || checkDown() || checkDiagonal()) {
 		game.winner = true;
+        disableRemainButtons()
         console.log("Winner")
         // let confetti = new ConfettiGenerator(dqs('body'))
         // confetti.render()
@@ -138,4 +139,14 @@ function changeAllButtonShadows(){
 function draw(){
     dqs("#msg").innerHTML=`So we have a draw`
     dqs("body").style.background = "yellow"
+}
+
+function disableRemainButtons(){
+    let buttons = document.querySelectorAll(".grid-btn")
+    for (button of buttons){
+        if(button.innerHTML.length <= 1){
+            button.innerHTML = " "
+            button.disabled = "disabled"
+        }
+    }
 }
