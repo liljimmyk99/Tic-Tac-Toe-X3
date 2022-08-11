@@ -15,8 +15,8 @@ body {
 
 button {
     font-size: 50px;
-    width: 200px;
-    height: 200px;
+    width: 20vh;
+    height: 20vh;
     background-color: aqua;
     border: px solid red;
     color: gray;
@@ -26,11 +26,11 @@ button[disabled]{
     color: black;
 }
 
-#btn-group{
-    padding-bottom: 50px;
-}
-
 #game-board{
     visibility: hidden;
+}
+
+.row{
+    display: flex
 }
 
