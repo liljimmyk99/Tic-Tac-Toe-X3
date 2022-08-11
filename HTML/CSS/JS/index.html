@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="./game.js"></script>
+    <script src="./game.js" defer></script>
     <link rel="stylesheet" href="styles.css">
     <title>Tic-Tac-Toe</title>
 </head>
 <body>
+    <confetti-container id="confetti"></confetti-container>
     <h2>XTREAM Tic-Tac-TOe</h2>
     <h3 id="msg">Who goes first?</h3>
     <div id="btn-group">
@@ -17,21 +18,22 @@
     </div>
     <div id="game-board">
         <div class="row" id="row0">
-            <button data-row=0 data-column=0 id="btn-0" onclick="selected(this)"></button>
-            <button data-row=0 data-column=1 id="btn-1" onclick="selected(this)"></button>
-            <button data-row=0 data-column=2 id="btn-3" onclick="selected(this)"></button>
+            <button data-row=0 data-column=0 id="btn-0" class="grid-btn" onclick="selected(this.id, 0,0)" onmouseenter="mouseHover(this)" onmouseleave="mouseLeave(this)"></button>
+            <button data-row=0 data-column=1 id="btn-1" class="grid-btn" onclick="selected(this.id, 0,0)"></button>
+            <button data-row=0 data-column=2 id="btn-3" class="grid-btn" onclick="selected(this)"></button>
         </div>
         <div class="row" id="row1">
-            <button id="btn-4" data-row=1 data-column=0 onclick="selected(this)"></button>
-            <button id="btn-5" data-row=1 data-column=1 onclick="selected(this)"></button>
-            <button id="btn-6" data-row=1 data-column=2 onclick="selected(this)"></button>
+            <button id="btn-4" data-row=1 data-column=0 class="grid-btn" onclick="selected(this)"></button>
+            <button id="btn-5" data-row=1 data-column=1 class="grid-btn" onclick="selected(this)"></button>
+            <button id="btn-6" data-row=1 data-column=2 class="grid-btn" onclick="selected(this)"></button>
         </div>
         <div class="row" id="row2">
-            <button id="btn-7" data-row=2 data-column=0 onclick="selected(this)"></button>
-            <button id="btn-8" data-row=2 data-column=1 onclick="selected(this)"></button>
-            <button id="btn-9" data-row=2 data-column=2 onclick="selected(this)"></button>
+            <button id="btn-7" data-row=2 data-column=0 class="grid-btn" onclick="selected(this)"></button>
+            <button id="btn-8" data-row=2 data-column=1 class="grid-btn" onclick="selected(this)"></button>
+            <button id="btn-9" data-row=2 data-column=2 class="grid-btn" onclick="selected(this)"></button>
         </div>
     </div>
     <div id="message-button"></div>
+    </confetti-container>
 </body>
 </html>
