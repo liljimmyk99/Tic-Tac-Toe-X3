@@ -27,8 +27,9 @@ function goesFirst(button){
     game.turn = letter;
     changeAllButtonShadows()
     // Show the board and have all the buttons, onHover show the letter going first
-    dqs("#btn-group").remove()
     dqs("#msg").innerHTML=`It is ${letter}'s turn`
+    dqs("#btn-group").style.visibility = "hidden"
+    console.log(dqs("#btn-group"))
     dqs("#game-board").style.visibility = 'visible'
 }
 
@@ -82,6 +83,7 @@ function checkWinner(){
         // let confetti = new ConfettiGenerator(dqs('body'))
         // confetti.render()
         dqs("body").style.background = "purple"
+        dqs("#reset").style.visibility = "visible"
         return true
 	} else {
 		return false
@@ -140,6 +142,7 @@ function changeAllButtonShadows(){
 function draw(){
     dqs("#msg").innerHTML=`So we have a draw`
     dqs("body").style.background = "yellow"
+    dqs("#reset").style.visibility = "visible"
 }
 
 function disableRemainButtons(){
@@ -150,4 +153,28 @@ function disableRemainButtons(){
             button.disabled = "disabled"
         }
     }
+}
+
+function reset(){
+    game = {
+        turn: "X",
+        board: [
+            [null, null, null],
+            [null, null, null],
+            [null, null, null]
+        ],
+        winner: false,
+        numTurns: 1
+    }
+
+    let buttons = document.querySelectorAll(".grid-btn")
+    for (button of buttons){
+            button.innerHTML = " "
+            button.disabled = false
+            button.style.backgroundColor = 'aqua'
+    }
+    dqs("#game-board").style.visibility = 'hidden'
+    dqs("#btn-group").style.visibility = "visible"
+    dqs("#msg").innerHTML=`Who goes first?`
+    
 }
