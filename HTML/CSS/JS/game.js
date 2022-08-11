@@ -78,6 +78,7 @@ function checkWinner(){
 		game.winner = true;
         disableRemainButtons()
         console.log("Winner")
+        dqs("#msg").innerHTML=`${game.turn} is the Winner`
         // let confetti = new ConfettiGenerator(dqs('body'))
         // confetti.render()
         dqs("body").style.background = "purple"
