@@ -11,6 +11,11 @@ button {
     height: 200px;
     background-color: aqua;
     border: px solid red;
+    color: gray;
+}
+
+button[disabled]{
+    color: black;
 }
 
 #btn-group{
