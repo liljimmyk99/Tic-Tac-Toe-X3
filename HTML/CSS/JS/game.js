@@ -11,6 +11,8 @@ var game = {
     numTurns: 1
 }
 
+var removedNodes
+
 /*
 let buttons = document.querySelectorAll('.game-settings')
 for (button of buttons){
@@ -28,8 +30,10 @@ function goesFirst(button){
     changeAllButtonShadows()
     // Show the board and have all the buttons, onHover show the letter going first
     dqs("#msg").innerHTML=`It is ${letter}'s turn`
-    dqs("#btn-group").style.visibility = "hidden"
-    console.log(dqs("#btn-group"))
+    removedNodes = Array.from(dqs("#btn-group").childNodes)
+    for (node of removedNodes){
+        node.remove()
+    }
     dqs("#game-board").style.visibility = 'visible'
 }
 
@@ -82,7 +86,7 @@ function checkWinner(){
         dqs("#msg").innerHTML=`${game.turn} is the Winner`
         // let confetti = new ConfettiGenerator(dqs('body'))
         // confetti.render()
-        dqs("body").style.background = "purple"
+        dqs("body").style.backgroundImage = "radial-gradient(circle at center, green, lime)"
         dqs("#reset").style.visibility = "visible"
         return true
 	} else {
@@ -141,7 +145,7 @@ function changeAllButtonShadows(){
 
 function draw(){
     dqs("#msg").innerHTML=`So we have a draw`
-    dqs("body").style.background = "yellow"
+    dqs("body").style.backgroundImage = "radial-gradient(circle at center, white , blue)"
     dqs("#reset").style.visibility = "visible"
 }
 
@@ -171,10 +175,16 @@ function reset(){
     for (button of buttons){
             button.innerHTML = " "
             button.disabled = false
-            button.style.backgroundColor = 'aqua'
+            button.style.backgroundColor = '#fceec7'
+    }
+    let btnGrp = dqs("#btn-group")
+    for (node of removedNodes){
+        btnGrp.appendChild(node)
     }
     dqs("#game-board").style.visibility = 'hidden'
-    dqs("#btn-group").style.visibility = "visible"
+    dqs("body").style.removeProperty("background-image")
+    //dqs("#btn-group").style.visibility = "visible"
     dqs("#msg").innerHTML=`Who goes first?`
+    dqs("#reset").style.visibility = "hidden"
     
 }
