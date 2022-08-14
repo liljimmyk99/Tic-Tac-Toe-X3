@@ -1,12 +1,14 @@
 import { LitElement, html, css } from 'lit';
 
-const logo = new URL('../assets/open-wc-logo.svg', import.meta.url).href;
-
 export class TicTacToe extends LitElement {
   static get properties() {
     return {
       title: { type: String },
     };
+  }
+
+  static get tag() {
+    return 'tic-tac-toe';
   }
 
   static get styles() {
@@ -24,33 +26,6 @@ export class TicTacToe extends LitElement {
         text-align: center;
         background-color: var(--tic-tac-toe-background-color);
       }
-
-      main {
-        flex-grow: 1;
-      }
-
-      .logo {
-        margin-top: 36px;
-        animation: app-logo-spin infinite 20s linear;
-      }
-
-      @keyframes app-logo-spin {
-        from {
-          transform: rotate(0deg);
-        }
-        to {
-          transform: rotate(360deg);
-        }
-      }
-
-      .app-footer {
-        font-size: calc(12px + 0.5vmin);
-        align-items: center;
-      }
-
-      .app-footer a {
-        margin-left: 5px;
-      }
     `;
   }
 
@@ -62,29 +37,8 @@ export class TicTacToe extends LitElement {
   render() {
     return html`
       <main>
-        <div class="logo"><img alt="open-wc logo" src=${logo} /></div>
         <h1>${this.title}</h1>
-
-        <p>Edit <code>src/TicTacToe.js</code> and save to reload.</p>
-        <a
-          class="app-link"
-          href="https://open-wc.org/guides/developing-components/code-examples/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Code examples
-        </a>
       </main>
-
-      <p class="app-footer">
-        🚽 Made with love by
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://github.com/open-wc"
-          >open-wc</a
-        >.
-      </p>
     `;
   }
 }
