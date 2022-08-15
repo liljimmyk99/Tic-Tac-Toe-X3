@@ -19,6 +19,10 @@ export class Tile extends LitElement {
 
   static get styles() {
     return css`
+      :host {
+        margin: 0px;
+        padding: 0px;
+      }
       :host([disabled]) {
         pointer-events: none;
       }
@@ -27,6 +31,8 @@ export class Tile extends LitElement {
         height: 150px;
         width: 150px;
         font-size: 50px;
+      }
+      button {
         background-color: #fceec7;
       }
       p {
@@ -68,6 +74,18 @@ export class Tile extends LitElement {
       text.innerHTML = this.turn;
       this.disabled = true;
       this.value = this.turn;
+      switch (this.turn) {
+        case 'X':
+          this.shadowRoot.querySelector('button').style.backgroundColor =
+            'green';
+          break;
+        case 'O':
+          this.shadowRoot.querySelector('button').style.backgroundColor = 'red';
+          break;
+        default:
+          this.shadowRoot.querySelector('button').style.backgroundColor =
+            'yellow';
+      }
       // this.shadowRoot.removeEventListener("click", this.handleClick, true)
       // this.shadowRoot.removeEventListener("mouseout", this.handleMouseOut);
     }
@@ -85,3 +103,4 @@ export class Tile extends LitElement {
     `;
   }
 }
+customElements.define(Tile.tag, Tile);
