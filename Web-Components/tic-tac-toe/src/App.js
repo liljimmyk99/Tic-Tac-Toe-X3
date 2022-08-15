@@ -1,3 +1,5 @@
 import { TicTacToe } from './TicTacToe.js';
+import { Tile } from './Tile.js';
 
-customElements.define('tic-tac-toe', TicTacToe);
+customElements.define(TicTacToe.tag, TicTacToe);
+customElements.define(Tile.tag, Tile);
