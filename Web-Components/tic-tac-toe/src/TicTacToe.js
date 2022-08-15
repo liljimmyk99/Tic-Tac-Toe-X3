@@ -26,25 +26,30 @@ export class TicTacToe extends LitElement {
     super();
     this.title = 'My app';
     this.turn = 'O';
+    this.values = [
+      [null, null, null],
+      [null, null, null],
+      [null, null, null],
+    ];
   }
 
   render() {
     return html`
       <div>
-        <div id="row0" class="row">
-          <tile-button turn=${this.turn}></tile-button
-          ><tile-button turn=${this.turn}></tile-button
-          ><tile-button turn=${this.turn}></tile-button>
+        <div class="row">
+          <tile-button id="0" turn=${this.turn}></tile-button
+          ><tile-button id="1" turn=${this.turn}></tile-button
+          ><tile-button id="2" turn=${this.turn}></tile-button>
         </div>
-        <div id="row1" class="row">
-          <tile-button turn=${this.turn}></tile-button
-          ><tile-button turn=${this.turn}></tile-button
-          ><tile-button turn=${this.turn}></tile-button>
+        <div class="row">
+          <tile-button id="3" turn=${this.turn}></tile-button
+          ><tile-button id="4" turn=${this.turn}></tile-button
+          ><tile-button id="5" turn=${this.turn}></tile-button>
         </div>
-        <div id="row2" class="row">
-          <tile-button turn=${this.turn}></tile-button
-          ><tile-button turn=${this.turn}></tile-button
-          ><tile-button turn=${this.turn}></tile-button>
+        <div class="row">
+          <tile-button id="6" turn=${this.turn}></tile-button
+          ><tile-button id="7" turn=${this.turn}></tile-button
+          ><tile-button id="8" turn=${this.turn}></tile-button>
         </div>
       </div>
     `;
