@@ -43,7 +43,7 @@ export class Tile extends LitElement {
 
   constructor() {
     super();
-    this.turn = 'X';
+    this.turn = '';
     this.value = ' ';
     this.enabled = false;
   }

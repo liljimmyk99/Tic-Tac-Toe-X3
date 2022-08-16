@@ -25,6 +25,7 @@ export class TicTacToe extends LitElement {
   constructor() {
     super();
     this.title = 'My app';
+    this.decideFirst = false;
     this.turn = 'O';
     this.values = [
       [null, null, null],
@@ -33,9 +34,27 @@ export class TicTacToe extends LitElement {
     ];
   }
 
+  startGame(e) {
+    this.decideFirst = true;
+    this.turn = e.target.textContent;
+    console.log(e.target);
+  }
+
   render() {
     return html`
-      <div>
+      ${this.decideFirst
+        ? this.renderGrid()
+        : html`
+            <p>Who goes First</p>
+            <button @click="${this.startGame}">O</button>
+            <button @click="${this.startGame}">X</button>
+          `}
+    `;
+  }
+
+  renderGrid() {
+    return html`
+      <div id="grid">
         <div class="row">
           <tile-button id="0" turn=${this.turn}></tile-button
           ><tile-button id="1" turn=${this.turn}></tile-button
