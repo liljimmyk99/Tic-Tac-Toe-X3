@@ -20,6 +20,9 @@ export class TicTacToe extends LitElement {
       .row {
         display: flex;
       }
+      #resetbtn {
+        visibility: hidden;
+      }
     `;
   }
 
@@ -70,6 +73,10 @@ export class TicTacToe extends LitElement {
   checkWinner() {
     if (this.checkAcross() || this.checkDown() || this.checkDiagonal()) {
       this.winner = true;
+      this.shadowRoot.querySelector(
+        'p'
+      ).innerHTML = `${this.turn} is the winner!  Play again?`;
+      this.shadowRoot.querySelector('#resetbtn').style.visibility = 'visible';
     }
   }
 
@@ -142,11 +149,9 @@ export class TicTacToe extends LitElement {
   }
 
   startGame(e) {
-    console.log(`Turn before: ${this.turn}`);
     this.decideFirst = true;
     this.turn = e.target.textContent;
     console.log(e.target);
-    console.log(`Turn After: ${this.turn}`);
   }
 
   render() {
@@ -164,7 +169,8 @@ export class TicTacToe extends LitElement {
   renderGrid() {
     return html`
       <div id="grid">
-        <button @click="${this.resetGame}">Reset</button>
+        <p></p>
+        <button @click="${this.resetGame}" id="resetbtn">Reset</button>
         <div class="row">
           <tile-button
             id="0"
