@@ -14,3 +14,10 @@ As I step back into my programmer hat at my full-time job, I want to rename clas
 - LitElement
 - npm
 - Github pages
+
+# To do
+- Check how web component looks on main page
+- Publish to npm
+- Handle Ties
+- Style decideFirst buttons and text
+- localstorage intergration
