@@ -36,14 +36,27 @@ export class TicTacToe extends LitElement {
     ];
   }
 
+  resetGame() {
+    this.winner = false;
+    this.decideFirst = false;
+    this.turn = ' ';
+    this.values = [
+      [null, null, null],
+      [null, null, null],
+      [null, null, null],
+    ];
+  }
+
   updated(changedProperties) {
     changedProperties.forEach((oldValue, propName) => {
       if (propName === 'values') {
         switch (this.turn) {
           case 'X':
+            this.checkWinner();
             this.turn = 'O';
             break;
           case 'O':
+            this.checkWinner();
             this.turn = 'X';
             break;
           default:
@@ -51,6 +64,81 @@ export class TicTacToe extends LitElement {
         }
       }
     });
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  checkWinner() {
+    if (this.checkAcross() || this.checkDown() || this.checkDiagonal()) {
+      this.winner = true;
+    }
+  }
+
+  checkAcross() {
+    if (
+      this.values[0][0] === this.values[0][1] &&
+      this.values[0][0] === this.values[0][2] &&
+      this.values[0][0] !== null
+    ) {
+      return true;
+    }
+    if (
+      this.values[1][0] === this.values[1][1] &&
+      this.values[1][0] === this.values[1][2] &&
+      this.values[1][0] !== null
+    ) {
+      return true;
+    }
+    if (
+      this.values[2][0] === this.values[2][1] &&
+      this.values[2][0] === this.values[2][2] &&
+      this.values[2][0] !== null
+    ) {
+      return true;
+    }
+    return false;
+  }
+
+  checkDiagonal() {
+    if (
+      this.values[0][0] === this.values[1][1] &&
+      this.values[0][0] === this.values[2][2] &&
+      this.values[0][0] !== null
+    ) {
+      return true;
+    }
+    if (
+      this.values[0][2] === this.values[1][1] &&
+      this.values[0][2] === this.values[2][0] &&
+      this.values[0][2] !== null
+    ) {
+      return true;
+    }
+    return false;
+  }
+
+  checkDown() {
+    if (
+      this.values[0][0] === this.values[1][0] &&
+      this.values[0][0] === this.values[2][0] &&
+      this.values[0][0] !== null
+    ) {
+      return true;
+    }
+    if (
+      this.values[0][1] === this.values[1][1] &&
+      this.values[0][1] === this.values[2][1] &&
+      this.values[0][1] !== null
+    ) {
+      return true;
+    }
+    if (
+      this.values[0][2] === this.values[1][2] &&
+      this.values[0][2] === this.values[2][2] &&
+      this.values[0][2] !== null
+    ) {
+      return true;
+    }
+    return false;
   }
 
   startGame(e) {
@@ -61,14 +149,8 @@ export class TicTacToe extends LitElement {
     console.log(`Turn After: ${this.turn}`);
   }
 
-  test() {
-    console.log('clicked');
-    this.winner = true;
-  }
-
   render() {
     return html`
-      <button @click=${this.test}>test disabled</button>
       ${this.decideFirst
         ? this.renderGrid()
         : html`
@@ -82,6 +164,7 @@ export class TicTacToe extends LitElement {
   renderGrid() {
     return html`
       <div id="grid">
+        <button @click="${this.resetGame}">Reset</button>
         <div class="row">
           <tile-button
             id="0"
