@@ -45,13 +45,24 @@ export class Tile extends LitElement {
     super();
     this.turn = '';
     this.value = ' ';
-    this.enabled = false;
+    this.disabled = false;
   }
 
   updated(changedProperties) {
     if (super.updated) {
       super.updated(changedProperties);
     }
+    changedProperties.forEach((oldValue, propName) => {
+      if (
+        propName === 'disabled' &&
+        this.disabled === true &&
+        this.value === ' '
+      ) {
+        console.log('Triggered');
+        this.shadowRoot.querySelector('button').style.backgroundColor =
+          'yellow';
+      }
+    });
   }
 
   handleMouseover() {
