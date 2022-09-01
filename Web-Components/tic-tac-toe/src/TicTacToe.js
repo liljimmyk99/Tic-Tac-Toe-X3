@@ -23,6 +23,12 @@ export class TicTacToe extends LitElement {
       #resetbtn {
         visibility: hidden;
       }
+      button {
+        height: 150px;
+        width: 150px;
+        font-size: 50px;
+        background-color: #fceec7;
+      }
     `;
   }
 

@@ -1,9 +1,12 @@
 {
-  "name": "tic-tac-toe",
+  "name": "@liljimmyk/tic-tac-toe",
   "description": "Webcomponent tic-tac-toe following open-wc recommendations",
   "license": "MIT",
   "author": "tic-tac-toe",
-  "version": "0.0.0",
+  "version": "0.0.2",
+  "private": false,
+  "publishConfig": {
+    "access": "public"},
   "scripts": {
     "lint": "eslint --ext .js,.html . --ignore-path .gitignore && prettier \"**/*.js\" --check --ignore-path .gitignore",
     "format": "eslint --ext .js,.html . --fix --ignore-path .gitignore && prettier \"**/*.js\" --write --ignore-path .gitignore",
