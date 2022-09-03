@@ -3,7 +3,7 @@
   "description": "Webcomponent tic-tac-toe following open-wc recommendations",
   "license": "MIT",
   "author": "tic-tac-toe",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": false,
   "publishConfig": {
     "access": "public"},
