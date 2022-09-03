@@ -6,8 +6,9 @@ export class TicTacToe extends LitElement {
     return {
       title: { type: String },
       turn: { type: String },
+      numTurns: { type: Number },
       values: { type: Array },
-      winner: { type: Boolean },
+      endGame: { type: Boolean },
     };
   }
 
@@ -17,11 +18,11 @@ export class TicTacToe extends LitElement {
 
   static get styles() {
     return css`
+      p {
+        font-size: 25px;
+      }
       .row {
         display: flex;
-      }
-      #resetbtn {
-        visibility: hidden;
       }
       button {
         height: 150px;
@@ -29,15 +30,28 @@ export class TicTacToe extends LitElement {
         font-size: 50px;
         background-color: #fceec7;
       }
+      #resetbtn,
+      .setupbtns {
+        height: 100px;
+        width: 100px;
+        font-size: 25px;
+      }
+      #resetgrp {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
     `;
   }
 
   constructor() {
     super();
     this.title = 'My app';
-    this.winner = false;
+    this.endGame = false;
     this.decideFirst = false;
     this.turn = ' ';
+    this.numTurns = 0;
     this.values = [
       [null, null, null],
       [null, null, null],
@@ -46,9 +60,10 @@ export class TicTacToe extends LitElement {
   }
 
   resetGame() {
-    this.winner = false;
+    this.endGame = false;
     this.decideFirst = false;
     this.turn = ' ';
+    this.numTurns = 0;
     this.values = [
       [null, null, null],
       [null, null, null],
@@ -72,16 +87,29 @@ export class TicTacToe extends LitElement {
             console.log('ERROR');
         }
       }
+      if (propName === 'numTurns') {
+        if (this.numTurns === 9) {
+          this.endGame = true;
+        }
+      }
+      if (propName === 'endGame') {
+        this.shadowRoot.querySelector(
+          '#resetText'
+        ).innerHTML = `Ends in a draw play again?`;
+      }
     });
   }
 
   // eslint-disable-next-line class-methods-use-this
   checkWinner() {
     if (this.checkAcross() || this.checkDown() || this.checkDiagonal()) {
-      this.winner = true;
-      this.shadowRoot.querySelector(
-        'p'
-      ).innerHTML = `${this.turn} is the winner!  Play again?`;
+      this.endGame = true;
+      setTimeout(() => {
+        this.shadowRoot.querySelector(
+          '#resetText'
+        ).innerHTML = `${this.turn} is the winner!  Play again?`;
+      }, 1);
+
       this.shadowRoot.querySelector('#resetbtn').style.visibility = 'visible';
     }
   }
@@ -160,40 +188,46 @@ export class TicTacToe extends LitElement {
     console.log(e.target);
   }
 
-  render() {
+  renderSetup() {
     return html`
-      ${this.decideFirst
-        ? this.renderGrid()
-        : html`
-            <p>Who goes First</p>
-            <button @click="${this.startGame}">X</button>
-            <button @click="${this.startGame}">O</button>
-          `}
+      <p>Who goes first?</p>
+      <button class="setupbtns" @click="${this.startGame}">X</button>
+      <button class="setupbtns" @click="${this.startGame}">O</button>
     `;
+  }
+
+  renderReset() {
+    return html`
+      <p id="resetText"></p>
+      <button @click="${this.resetGame}" id="resetbtn">Reset</button>
+    `;
+  }
+
+  render() {
+    return html` ${this.decideFirst ? this.renderGrid() : this.renderSetup()} `;
   }
 
   renderGrid() {
     return html`
+      <div id="resetgrp">${this.endGame ? this.renderReset() : html``}</div>
       <div id="grid">
-        <p></p>
-        <button @click="${this.resetGame}" id="resetbtn">Reset</button>
         <div class="row">
           <tile-button
             id="0"
             @click=${this.handleClick}
-            ?disabled=${this.winner}
+            ?disabled=${this.endGame}
             turn=${this.turn}
           ></tile-button
           ><tile-button
             id="1"
             @click=${this.handleClick}
-            ?disabled=${this.winner}
+            ?disabled=${this.endGame}
             turn=${this.turn}
           ></tile-button
           ><tile-button
             id="2"
             @click=${this.handleClick}
-            ?disabled=${this.winner}
+            ?disabled=${this.endGame}
             turn=${this.turn}
           ></tile-button>
         </div>
@@ -201,19 +235,19 @@ export class TicTacToe extends LitElement {
           <tile-button
             id="3"
             @click=${this.handleClick}
-            ?disabled=${this.winner}
+            ?disabled=${this.endGame}
             turn=${this.turn}
           ></tile-button
           ><tile-button
             id="4"
             @click=${this.handleClick}
-            ?disabled=${this.winner}
+            ?disabled=${this.endGame}
             turn=${this.turn}
           ></tile-button
           ><tile-button
             id="5"
             @click=${this.handleClick}
-            ?disabled=${this.winner}
+            ?disabled=${this.endGame}
             turn=${this.turn}
           ></tile-button>
         </div>
@@ -221,19 +255,19 @@ export class TicTacToe extends LitElement {
           <tile-button
             id="6"
             @click=${this.handleClick}
-            ?disabled=${this.winner}
+            ?disabled=${this.endGame}
             turn=${this.turn}
           ></tile-button
           ><tile-button
             id="7"
             @click=${this.handleClick}
-            ?disabled=${this.winner}
+            ?disabled=${this.endGame}
             turn=${this.turn}
           ></tile-button
           ><tile-button
             id="8"
             @click=${this.handleClick}
-            ?disabled=${this.winner}
+            ?disabled=${this.endGame}
             turn=${this.turn}
           ></tile-button>
         </div>
@@ -277,5 +311,6 @@ export class TicTacToe extends LitElement {
         console.log('Error ID is not valid');
     }
     this.values = arr;
+    this.numTurns += 1;
   }
 }
